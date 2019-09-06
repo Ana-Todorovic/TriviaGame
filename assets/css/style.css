@@ -1,0 +1,36 @@
+body{
+    background-image: url("../../../unit-4-game/assets/images/Kitty_Background.jpg");
+}
+#start{
+    visibility: visible;
+}
+/* #answerSelector{
+    border: 2px solid rgba(2, 133, 255, 0.6);
+    border-radius: 10%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #000000;
+    margin-top: 10%; */
+}
+#answerOpt{
+    color: #000000;
+}
+.answerSelector{
+    background: rgba(93, 128, 243, 0.3);
+    border: 2px solid rgba(93, 128, 243, 0.7);
+    border-radius: 10%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #000000;
+}
+#reset{
+    visibility: visible;
+}
+.container{
+    color: #000000;
+}
+#question{
+    color:#000000;
+}
