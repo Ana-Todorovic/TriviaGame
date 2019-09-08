@@ -14,31 +14,33 @@
   background: #eeeeee;
   color: #095886;
 }
+#reset{
+  margin-top: 30%;
+  border: 1px solid rgba(26, 137, 228, 0.7);
+  background: #eeeeee;
+  color: #095886;
+}
 img {
   height: 30%;
   width: 30%;
+  margin-top: 10%;
   border-radius: 5%;
 }
-
 #answerArea {
   text-align: center;
   width: 40%;
 }
-
 #questionArea {
   text-align: center;
   font-weight: bold;
 }
-
 #reset {
   visibility: visible;
 }
-
 body {
   background-image: url("../../../unit-4-game/assets/images/Kitty_Background.jpg");
   background-size: cover;
 }
-
 h1 {
   text-align: center;
   color: white;
@@ -46,19 +48,16 @@ h1 {
   padding: 20px;
   font-size: 45px;
 }
-
 p {
   margin: 10px;
   font-weight: bold;
   color: rgb(2, 21, 61);
   font-size: 20px;
 }
-
 h2, h4 {
   margin: 30px;
   font-weight: bold;
 }
-
 .wrapper {
   margin: 10px auto;
   background-color: rgba(195, 221, 255, 0.5);
@@ -68,7 +67,6 @@ h2, h4 {
   width: 60%;
   text-align: center;
 }
-
 .btn {
   position: relative;
   margin-bottom: 20%;

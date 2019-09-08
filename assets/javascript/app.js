@@ -5,7 +5,7 @@ $(document).ready(function(){
             answerOptions: ["1","4","2","3"],
             correctAnswer: 3,
             img: "../unit-4-game/assets/images/Kitty_1.jpeg",
-            img2:"../unit-4-game/assets/images/Kitty_2.jpeg",
+            img2: "../unit-4-game/assets/images/Kitty_2.jpeg",
             answerExplanation: "In addition to an upper and lower eyelid, cats have a third eyelid which acts as an extra layer of protection."
         },
         {
@@ -33,60 +33,64 @@ var total = questions.length;
 $("#reset").hide();
 $("#startBtn").on("click", function () {
     $("#startBtn").hide();
-    displayQuestions();
     run();
+    displayQuestions();
     for(var i = 0; i < questions.length; i++) {
-holder.push(questions[i]);
-}
+        holder.push(questions[i]);
+    }
 })
 
 function run() {
+    $("#start").html("<h3> Timer: " + startTime + "</h3>");
+    $("#start").show();
     if (!timerRunning){
     timer1 = setInterval(decrement, 1000);
     timerRunning = true;
     }
-  }
+}
 
   function decrement() {
-    $("#start").html("<h3>" + startTime + "</h3>");
+    $("#start").html("<h3> Timer: " + startTime + "</h3>");
     startTime--;
 
     if (startTime === 0) {
         unanswered++;
         stop(); 
         $("#answerArea").html("<p>The correct answer is: " + pick.answerOptions[pick.correctAnswer] + "<br>" + pick.answerExplanation + "</p>");
+        $("#questionArea").hide();
         hideImg();
     }
   }
   
   function stop() {
     timerRunning = false;
+    $("#start").hide();
     clearInterval(timer1);
   }
-  
 
   function displayQuestions(){
     randomQuestionSelector = (Math.floor(Math.random() * questions.length));
     pick = questions[randomQuestionSelector];
 
-    $("#questionArea").html("<h2>" + pick.question + "</h2>");
+    $("#questionArea").html("<h2>" + pick.question + "<br>" + "<img src=" + pick.img2 + ">" + "</h2>");
+    $("#questionArea").show();
     for(var i = 0; i < pick.answerOptions.length; i++) {
         var usersChoice = $("<div>");
         usersChoice.addClass("answerOpt");
         usersChoice.html(pick.answerOptions[i]);
-        usersChoice.attr("questionVal", i);
+        usersChoice.attr("answerOptionIndex", i);
         $("#answerArea").append(usersChoice);
 		}
     
     $(".answerOpt").on("click", function () {
-        usersSelection = parseInt($(this).attr("questionVal"));
+        $("#questionArea").hide();
+        usersSelection = parseInt($(this).attr("answerOptionIndex"));
         if (usersSelection === pick.correctAnswer) {
             stop();
             correctAnswerCount++;
             usersSelection="";
             $("#answerArea").html("<p>Great Job!" + "<br>" + pick.answerExplanation + "</p>");
             hideImg();
-    
         } else if (usersSelection !== pick.correctAnswer) {
             stop();
             wrongAnswerCount++;
@@ -97,16 +101,17 @@ function run() {
     })
 }
 
-    function hideImg () {
+    function hideImg () {  // Note: This isn't a very clear function name since most of this is handling the end state.
         $("#answerArea").append("<img src=" + pick.img + ">");
-        newArray.push(pick);
-        questions.splice(randomQuestionSelector,1);
+        newArray.push(pick); // Does this do anything? It's the only time you use newArray.
+        questions.splice(randomQuestionSelector,1);  // Note: Break this down
     
         var hideImage = setTimeout(function(){
             $("#answerArea").empty();
             startTime= 20;
 
         if ((wrongAnswerCount + correctAnswerCount + unanswered) === total) {
+            $("#start").hide();
             $("#questionArea").empty();
             $("#questionArea").html("<h3>Your scores : </h3>");
             $("#answerArea").append("<h4>Correct: " + correctAnswerCount + "</h4>" );
@@ -125,6 +130,7 @@ function run() {
     }
     $("#reset").on("click", function() {
         $("#reset").hide();
+        $("#start").show();
         $("#answerArea").empty();
         $("#questionArea").empty();
         for(var i = 0; i < holder.length; i++) {
