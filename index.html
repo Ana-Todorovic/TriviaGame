@@ -3,33 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <title>Document</title>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script type="text/javascript" src="../TriviaGame/assets/javascript/app.js"></script>
+    <title>Awesome Quiz</title>
 </head>
 <body>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <h2>Trivia Quiz</h2>
-
-    <button class="btn btn-success" id="startBtn" style="display:none;">Start Quiz</button>
-
-    <p>You have: <h4 id="start">20</h4>seconds to self distruct</p>
-
-        <div id="questionSelector">
-            <h2 id="question"></h2>
-        </div>
-
-        <div>
-        <div class="answerOpt" questionVal="0"></div>
-        <div class="answerOpt" questionVal="1"></div>
-        <div class="answerOpt" questionVal="2"></div>
-        <div class="answerOpt" questionVal="3"></div>
-        </div>
-
-    <button class="btn btn-success" id="reset" style="display:none;">Try Again</button>
-    </div>
-
-    <script type="text/javascript" src="../TriviaGame/assets/javascript/app.js"></script>
+<h1>Quiz</h1>
+<div class="wrapper">	
+  	<div id="start"></div>
+	<div id="questionArea"></div>
+    <div class="container" id="answerArea"></div>
+	<button class="btn btn-success" id="startBtn">Start Quiz</button><br>
+	<button class="btn btn-success" id="reset">Play Again?</button>
+</div>
 </body>
 </html>

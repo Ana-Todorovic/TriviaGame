@@ -1,18 +1,20 @@
 $(document).ready(function(){
     var questions = [
         {
-            question: "What is 2+2?",
-            answerOptions: ["5","4","2","0"],
-            correctAnswer: 1,
+            question: "How many eyelids does a cat have?",
+            answerOptions: ["1","4","2","3"],
+            correctAnswer: 3,
             img: "../unit-4-game/assets/images/Kitty_1.jpeg",
-            answerExplanation: "Adding 2 with another 2 equals to 4."
+            img2:"../unit-4-game/assets/images/Kitty_2.jpeg",
+            answerExplanation: "In addition to an upper and lower eyelid, cats have a third eyelid which acts as an extra layer of protection."
         },
         {
-            question: "What is 2+3?",
-            answerOptions: ["5","4","2","0"],
+            question: "Guess the age of the oldest living cat.",
+            answerOptions: ["17","25","38","42"],
             correctAnswer: 0,
             img: "../unit-4-game/assets/images/Kitty_1.jpeg",
-            answerExplanation: "Adding 2 with 3 equals to 5."
+            img2:"../unit-4-game/assets/images/Kitty_2.jpeg",
+            answerExplanation: "A kitty from Texas named Creme Puff lived to be 38 years old!"
         }];
 
 var randomQuestionSelector;
@@ -22,7 +24,7 @@ var timer1;
 var timerRunning = false;
 var holder = [];
 var newArray = [];
-var usersChoice = "";
+var usersSelection = "";
 var wrongAnswerCount = 0;
 var correctAnswerCount = 0;
 var unanswered = 0;
@@ -46,68 +48,70 @@ function run() {
   }
 
   function decrement() {
-    $("#start").html("<h4>" + startTime + "</h4>");
+    $("#start").html("<h3>" + startTime + "</h3>");
     startTime--;
 
     if (startTime === 0) {
         unanswered++;
         stop(); 
-      // See why this message doesn't work.
-      $("#answerSelector").html("<h4>Time is up! The correct answer is: " + pick.answerOptions[pick.correctAnswer] + "</h4>");
-      hideImg();
+        $("#answerArea").html("<p>The correct answer is: " + pick.answerOptions[pick.correctAnswer] + "<br>" + pick.answerExplanation + "</p>");
+        hideImg();
     }
   }
+  
   function stop() {
     timerRunning = false;
     clearInterval(timer1);
   }
-  run();
+  
 
   function displayQuestions(){
     randomQuestionSelector = (Math.floor(Math.random() * questions.length));
     pick = questions[randomQuestionSelector];
 
-    $("#questionSelector").html("<h2>" + pick.question + "</h2>");
+    $("#questionArea").html("<h2>" + pick.question + "</h2>");
     for(var i = 0; i < pick.answerOptions.length; i++) {
         var usersChoice = $("<div>");
         usersChoice.addClass("answerOpt");
         usersChoice.html(pick.answerOptions[i]);
         usersChoice.attr("questionVal", i);
-        $("#answerSelector").append(usersChoice);
+        $("#answerArea").append(usersChoice);
 		}
-    }
+    
     $(".answerOpt").on("click", function () {
-        usersChoice = parseInt($(this).attr("questionVal"));
-        if (usersChoice === pick.correctAnswer) {
+        usersSelection = parseInt($(this).attr("questionVal"));
+        if (usersSelection === pick.correctAnswer) {
             stop();
             correctAnswerCount++;
-            usersChoice="";
-            $("#answerSelector").html("<p>Correct!</p>");
+            usersSelection="";
+            $("#answerArea").html("<p>Great Job!" + "<br>" + pick.answerExplanation + "</p>");
             hideImg();
     
-        } else {
+        } else if (usersSelection !== pick.correctAnswer) {
             stop();
             wrongAnswerCount++;
-            usersChoice="";
-            $("#answerSelector").html("<p>Wrong! The correct answer is: " + pick.answerOptions[pick.answer] + "</p>");
+            usersSelection="";
+            $("#answerArea").html("<p>Oh no! That's incorrect. " + "<br>" + "The correct answer is: " + pick.answerOptions[pick.correctAnswer] + "<br>" + pick.answerExplanation + "</p>");
             hideImg();
         }
     })
+}
+
     function hideImg () {
-        $("#answerSelector").append("<img src=" + pick.img + ">");
+        $("#answerArea").append("<img src=" + pick.img + ">");
         newArray.push(pick);
         questions.splice(randomQuestionSelector,1);
     
-        var hideimage = setTimeout(function() {
-            $("#answerSelector").empty();
-            timer= 20;
+        var hideImage = setTimeout(function(){
+            $("#answerArea").empty();
+            startTime= 20;
 
         if ((wrongAnswerCount + correctAnswerCount + unanswered) === total) {
-            $("#questionSelector").empty();
-            $("#questionSelector").html("<h3>Game Over!  Here's how you did: </h3>");
-            $("#answerSelector").append("<h4> Correct: " + correctAnswer + "</h4>" );
-            $("#answerSelector").append("<h4> Incorrect: " + wrongAnswer+ "</h4>" );
-            $("#answerSelector").append("<h4> Unanswered: " + unanswered + "</h4>" );
+            $("#questionArea").empty();
+            $("#questionArea").html("<h3>Your scores : </h3>");
+            $("#answerArea").append("<h4>Correct: " + correctAnswerCount + "</h4>" );
+            $("#answerArea").append("<h4>Incorrect: " + wrongAnswerCount + "</h4>" );
+            $("#answerArea").append("<h4>Unanswered: " + unanswered + "</h4>" );
             $("#reset").show();
             correctAnswerCount = 0;
             wrongAnswerCount= 0;
@@ -116,14 +120,13 @@ function run() {
         } else {
             run();
             displayQuestions();
-    
         }
-        }, 3000);
+        }, 4000);
     }
     $("#reset").on("click", function() {
         $("#reset").hide();
-        $("#answerSelector").empty();
-        $("#questionSelector").empty();
+        $("#answerArea").empty();
+        $("#questionArea").empty();
         for(var i = 0; i < holder.length; i++) {
             questions.push(holder[i]);
         }
@@ -132,6 +135,3 @@ function run() {
     })
     
 });
-
-
-// TODO: When timer reachs 0 send it to a page with an image
