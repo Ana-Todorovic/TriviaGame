@@ -1,3 +1,9 @@
+#startBtn, #reset{
+    margin-top: 30%;
+    border: 1px solid rgba(26, 137, 228, 0.7);
+    background: #eeeeee;
+    color: #095886;
+}
 .answerOpt{
   flex: content;
   background: rgb(255, 255, 255);
@@ -8,23 +14,14 @@
   margin: 2%;
   font-size: 100%;
 }
-#startBtn{
-  margin-top: 30%;
-  border: 1px solid rgba(26, 137, 228, 0.7);
-  background: #eeeeee;
-  color: #095886;
-}
-#reset{
-  margin-top: 30%;
-  border: 1px solid rgba(26, 137, 228, 0.7);
-  background: #eeeeee;
-  color: #095886;
-}
 img {
-  height: 30%;
-  width: 30%;
+  height: 40%;
+  width: 40%;
   margin-top: 10%;
   border-radius: 5%;
+}
+questions.img2{
+    
 }
 #answerArea {
   text-align: center;
@@ -33,30 +30,25 @@ img {
 #questionArea {
   text-align: center;
   font-weight: bold;
+  text-shadow: 0px 2px 3px #818181;
 }
 #reset {
   visibility: visible;
 }
 body {
-  background-image: url("../../../unit-4-game/assets/images/Kitty_Background.jpg");
-  background-size: cover;
-}
-h1 {
-  text-align: center;
-  color: white;
-  font-weight: bolder;
-  padding: 20px;
-  font-size: 45px;
+  background-image: url("../../../TriviaGame/assets/images/TG_Cover_2.jpg");
+  background-size: 97%;
 }
 p {
-  margin: 10px;
   font-weight: bold;
-  color: rgb(2, 21, 61);
   font-size: 20px;
+  text-align: start;
+  text-shadow: 0px 2px 3px #818181;
 }
-h2, h4 {
-  margin: 30px;
+h1, h2, h3 {
   font-weight: bold;
+  text-shadow: 0px 2px 3px #818181;
+  text-align: center;
 }
 .wrapper {
   margin: 10px auto;

@@ -4,26 +4,50 @@ $(document).ready(function(){
             question: "How many eyelids does a cat have?",
             answerOptions: ["1","4","2","3"],
             correctAnswer: 3,
-            img: "../unit-4-game/assets/images/Kitty_1.jpeg",
-            img2: "../unit-4-game/assets/images/Kitty_2.jpeg",
+            img: "../TriviaGame/assets/images/eyelids.jpg",
+            img2: "../TriviaGame/assets/images/eyelids.jpg",
             answerExplanation: "In addition to an upper and lower eyelid, cats have a third eyelid which acts as an extra layer of protection."
+        },
+        {
+            question: "What is a cat doing when it makes a funny face?",
+            answerOptions: ["Showing how much they hate you","Telling you, you stink","Tasting through scent","Striking a pose"],
+            correctAnswer: 2,
+            img: "../TriviaGame/assets/images/funny_face.jpg",
+            img2: "../TriviaGame/assets/images/funny_face2.jpg",
+            answerExplanation: "Cats can taste by just using their nose. It's called, taste-scenting, which is possible due to an extra organ."
+        },
+        {
+            question: "Are cats lactose intolerant?",
+            answerOptions: ["No","Yes"],
+            correctAnswer: 1,
+            img: "../TriviaGame/assets/images/milk.jpg",
+            img2: "../TriviaGame/assets/images/milk2.jpg",
+            answerExplanation: "Cats are lactose intolerant. No milk for kitty!"
+        },
+        {
+            question: "Are cats smarter than dogs?",
+            answerOptions: ["Yes", "No"],
+            correctAnswer: 0,
+            img: "../TriviaGame/assets/images/smarter.jpg",
+            img2: "../TriviaGame/assets/images/smarter2.jpg",
+            answerExplanation: "Cats have 300 million neurons in comparison to dogs who only have 160 million. Dogs have a higher social IQ but cats can solve more difficult cognitive problems. Only when they feel like it, of course..."
         },
         {
             question: "Guess the age of the oldest living cat.",
             answerOptions: ["17","25","38","42"],
-            correctAnswer: 0,
-            img: "../unit-4-game/assets/images/Kitty_1.jpeg",
-            img2:"../unit-4-game/assets/images/Kitty_2.jpeg",
+            correctAnswer: 2,
+            img: "../TriviaGame/assets/images/oldest_living.jpg",
+            img2:"../TriviaGame/assets/images/oldest_living2.jpg",
             answerExplanation: "A kitty from Texas named Creme Puff lived to be 38 years old!"
         }];
 
 var randomQuestionSelector;
 var pick;
-var startTime = 20;
+var defaultStartTime = 20;
+var startTime = defaultStartTime;
 var timer1;
 var timerRunning = false;
 var holder = [];
-var newArray = [];
 var usersSelection = "";
 var wrongAnswerCount = 0;
 var correctAnswerCount = 0;
@@ -77,6 +101,7 @@ function run() {
     for(var i = 0; i < pick.answerOptions.length; i++) {
         var usersChoice = $("<div>");
         usersChoice.addClass("answerOpt");
+        usersChoice.addClass("row");
         usersChoice.html(pick.answerOptions[i]);
         usersChoice.attr("answerOptionIndex", i);
         $("#answerArea").append(usersChoice);
@@ -101,14 +126,13 @@ function run() {
     })
 }
 
-    function hideImg () {  // Note: This isn't a very clear function name since most of this is handling the end state.
+    function hideImg () {
         $("#answerArea").append("<img src=" + pick.img + ">");
-        newArray.push(pick); // Does this do anything? It's the only time you use newArray.
-        questions.splice(randomQuestionSelector,1);  // Note: Break this down
+        questions.splice(randomQuestionSelector,1);
     
-        var hideImage = setTimeout(function(){
+        setTimeout( function () {
             $("#answerArea").empty();
-            startTime= 20;
+            startTime= defaultStartTime;
 
         if ((wrongAnswerCount + correctAnswerCount + unanswered) === total) {
             $("#start").hide();
@@ -118,16 +142,17 @@ function run() {
             $("#answerArea").append("<h4>Incorrect: " + wrongAnswerCount + "</h4>" );
             $("#answerArea").append("<h4>Unanswered: " + unanswered + "</h4>" );
             $("#reset").show();
-            correctAnswerCount = 0;
-            wrongAnswerCount= 0;
-            unanswered = 0;
+            correctAnswerCount;
+            wrongAnswerCount;
+            unanswered;
     
         } else {
             run();
             displayQuestions();
         }
-        }, 4000);
+        }, 2000);
     }
+
     $("#reset").on("click", function() {
         $("#reset").hide();
         $("#start").show();
