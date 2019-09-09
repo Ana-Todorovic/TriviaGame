@@ -150,7 +150,7 @@ function run() {
             run();
             displayQuestions();
         }
-        }, 2000);
+        }, 4000);
     }
 
     $("#reset").on("click", function() {
